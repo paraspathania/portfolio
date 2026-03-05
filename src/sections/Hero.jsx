@@ -26,7 +26,9 @@ const Hero = () => {
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
             {/* 3D Canvas Background */}
-            <HeroCanvas />
+            <div className="absolute inset-0 pointer-events-none z-0">
+                <HeroCanvas />
+            </div>
 
             {/* Aurora drift blobs */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -109,7 +111,7 @@ const Hero = () => {
                         >
                             <Typewriter
                                 options={{
-                                    strings: ['Software Developer Engineer', 'Full Stack Developer', 'UI/UX Designer', 'Problem Solver'],
+                                    strings: ['Software Developer Engineer', 'Full Stack Developer', 'Problem Solver'],
                                     autoStart: true,
                                     loop: true,
                                 }}
@@ -150,14 +152,15 @@ const Hero = () => {
                             className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8"
                         >
                             <a
-                                href="#projects"
+                                href="/CV.pdf"
+                                download="Paras_Pathania_Resume.pdf"
                                 className="px-7 py-3 text-white rounded-full font-semibold transition-all flex items-center justify-center gap-2 hover:scale-105"
                                 style={{
                                     background: 'linear-gradient(135deg, #0d9488, #6366f1)',
                                     boxShadow: '0 0 28px rgba(13,148,136,0.4)',
                                 }}
                             >
-                                View Projects <ArrowRight size={18} />
+                                Download Resume <Download size={18} />
                             </a>
                             <a
                                 href="#contact"
@@ -226,14 +229,12 @@ const Hero = () => {
 
                     {/* ── Right Column: Animated IDE ── */}
                     <motion.div
-                        className="flex-1 w-full max-w-lg lg:max-w-xl flex flex-col gap-4"
+                        className="flex-1 w-full max-w-lg lg:max-w-xl flex flex-col gap-4 relative z-10"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <CodeDisplay />
-
-
                     </motion.div>
 
                 </div>

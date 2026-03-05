@@ -1,6 +1,7 @@
 ﻿import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Code2 } from 'lucide-react';
+import StarField from '../components/ui/StarField';
 
 /* ── Orbiting ring that wraps around the tilt card ── */
 const OrbitRing = ({ size, duration, color, tilt = 0 }) => (
@@ -52,6 +53,8 @@ const About = () => {
 
     return (
         <section id="about" className="py-20 relative overflow-hidden" style={{ background: '#050d12' }}>
+            <StarField />
+
             {/* Animated grid background */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{
                 backgroundImage: 'linear-gradient(rgba(20,184,166,1) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,1) 1px, transparent 1px)',
@@ -117,14 +120,10 @@ const About = () => {
                                         backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px)',
                                     }} />
 
-                                    {/* Inner glowing window */}
-                                    <div className="absolute inset-2 flex items-center justify-center pointer-events-none z-10">
-                                        <div className="w-[85%] h-[85%] rounded-xl flex items-center justify-center relative overflow-hidden" style={{
-                                            background: 'linear-gradient(135deg, rgba(20,184,166,0.15) 0%, rgba(99,102,241,0.15) 100%)',
-                                            border: '1px solid rgba(255,255,255,0.05)',
-                                            boxShadow: 'inset 0 0 30px rgba(255,255,255,0.02)',
-                                        }}>
-                                            <Code2 size={64} className="text-white/80 drop-shadow-[0_0_15px_rgba(20,184,166,0.5)]" />
+                                    {/* Morphing blob */}
+                                    <div className="absolute inset-4 flex items-center justify-center">
+                                        <div className="blob-shape w-48 h-48 bg-gradient-to-br from-cyan-400/20 to-orange-400/20 border border-cyan-400/30 flex items-center justify-center">
+                                            <span className="text-6xl select-none">👨‍💻</span>
                                         </div>
                                     </div>
 
@@ -156,25 +155,25 @@ const About = () => {
                         </div>
 
                         {/* ── Text + stat cards ── */}
-                        <div className="w-full md:w-1/2 flex flex-col justify-center">
+                        <div className="w-full md:w-1/2 flex flex-col justify-center lg:pl-8">
                             <motion.div
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm font-mono mb-6 w-fit"
+                                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-400 text-sm font-mono mb-8 w-fit shadow-[0_0_15px_rgba(20,184,166,0.15)]"
                             >
-                                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse shadow-[0_0_8px_rgba(20,184,166,0.8)]"></span>
                                 Developer Identity
                             </motion.div>
 
                             <motion.h2
-                                className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
+                                className="text-4xl lg:text-5xl xl:text-6xl font-black mb-6 text-white tracking-tight leading-[1.1]"
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
                             >
-                                Designing <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Logic</span>,<br />
-                                Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Experiences</span>.
+                                Designing <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400 drop-shadow-[0_0_10px_rgba(45,212,191,0.3)]">Logic</span>,<br />
+                                Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 drop-shadow-[0_0_10px_rgba(129,140,248,0.3)]">Experiences</span>.
                             </motion.h2>
 
                             <motion.p
-                                className="text-slate-400 text-lg mb-8 leading-relaxed font-light"
+                                className="text-slate-300 text-lg mb-10 leading-relaxed font-light max-w-xl"
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
                             >
                                 Hello! I'm a passionate full-stack developer obsessed with creating pixel-perfect,
@@ -182,36 +181,42 @@ const About = () => {
                                 and intuitive frontend design, turning complex problems into elegant solutions.
                             </motion.p>
 
-                            {/* Bento-style Stats */}
-                            <div className="grid grid-cols-2 gap-4">
+                            {/* Premium Bento-style Stats */}
+                            <div className="grid grid-cols-2 gap-5 lg:gap-6">
                                 {[
-                                    { value: '4+', label: 'Projects Completed', color: '#14b8a6', glow: 'rgba(20,184,166,0.15)' },
-                                    { value: '8+', label: 'Tech Stack', color: '#8b5cf6', glow: 'rgba(139,92,246,0.15)' },
-                                    { value: '100%', label: 'Passion', color: '#34d399', glow: 'rgba(52,211,153,0.15)' },
-                                    { value: '∞', label: 'Curiosity', color: '#f59e0b', glow: 'rgba(245,158,11,0.15)' },
+                                    { value: '4+', label: 'Projects Completed', color: '#14b8a6', glow: 'rgba(20,184,166,0.2)' },
+                                    { value: '8+', label: 'Tech Stack', color: '#8b5cf6', glow: 'rgba(139,92,246,0.2)' },
+                                    { value: '100%', label: 'Passion', color: '#34d399', glow: 'rgba(52,211,153,0.2)' },
+                                    { value: '∞', label: 'Curiosity', color: '#f59e0b', glow: 'rgba(245,158,11,0.2)' },
                                 ].map((stat, i) => (
                                     <motion.div
                                         key={i}
                                         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 + i * 0.1 }}
-                                        whileHover={{ scale: 1.03, y: -2 }}
-                                        className="p-5 rounded-2xl relative overflow-hidden group"
+                                        whileHover={{ scale: 1.05, y: -4 }}
+                                        className="p-6 rounded-3xl relative overflow-hidden group/stat cursor-default shadow-lg"
                                         style={{
-                                            background: 'rgba(5, 13, 18, 0.4)',
-                                            border: '1px solid rgba(255,255,255,0.05)',
-                                            backdropFilter: 'blur(10px)',
+                                            background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(5, 13, 20, 0.8) 100%)',
+                                            border: '1px solid rgba(255,255,255,0.06)',
+                                            backdropFilter: 'blur(16px)',
                                         }}
                                     >
-                                        {/* Hover glow effect */}
-                                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
-                                            background: `radial-gradient(circle at center, ${stat.glow} 0%, transparent 70%)`
+                                        {/* Hover radiant glow */}
+                                        <div className="absolute inset-0 opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500" style={{
+                                            background: `radial-gradient(120px circle at top right, ${stat.glow} 0%, transparent 100%)`
                                         }} />
 
-                                        {/* Top accent line */}
-                                        <div className="absolute top-0 left-0 w-full h-[2px] opacity-20 group-hover:opacity-100 transition-opacity" style={{ background: `linear-gradient(90deg, transparent, ${stat.color}, transparent)` }} />
+                                        {/* Animated borders on hover */}
+                                        <div className="absolute top-0 left-0 w-full h-[2px] opacity-10 group-hover/stat:opacity-100 transition-all duration-500 origin-left scale-x-0 group-hover/stat:scale-x-100" style={{ background: `linear-gradient(90deg, transparent, ${stat.color}, ${stat.color})` }} />
+                                        <div className="absolute left-0 top-0 h-full w-[2px] opacity-10 group-hover/stat:opacity-100 transition-all duration-500 origin-top scale-y-0 group-hover/stat:scale-y-100" style={{ background: `linear-gradient(180deg, transparent, ${stat.color}, transparent)` }} />
+
 
                                         <div className="relative z-10">
-                                            <h3 className="text-3xl font-black mb-1 tracking-tight" style={{ color: stat.color }}>{stat.value}</h3>
-                                            <p className="text-sm text-slate-400 font-medium">{stat.label}</p>
+                                            <h3 className="text-4xl font-black mb-2 tracking-tight transition-all duration-300 group-hover/stat:translate-x-1" style={{ color: stat.color, textShadow: `0 2px 10px ${stat.glow}` }}>
+                                                {stat.value}
+                                            </h3>
+                                            <p className="text-sm md:text-base text-slate-400 font-medium transition-colors duration-300 group-hover/stat:text-slate-200">
+                                                {stat.label}
+                                            </p>
                                         </div>
                                     </motion.div>
                                 ))}

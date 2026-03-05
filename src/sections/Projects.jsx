@@ -67,36 +67,42 @@ const Shimmer = React.forwardRef((_, ref) => (
 
 /* ── Inline app mockup preview ── */
 const AppMockup = ({ project }) => (
-    <div style={{
-        width: '85%', borderRadius: 10,
-        background: 'rgba(15,23,42,0.85)',
-        border: `1px solid ${project.accent}30`,
-        overflow: 'hidden',
-        boxShadow: `0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px ${project.accent}20`,
-    }}>
+    <motion.div
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        style={{
+            width: '90%', borderRadius: 12,
+            background: 'rgba(5, 13, 20, 0.95)',
+            border: `1px solid ${project.accent}30`,
+            overflow: 'hidden',
+            boxShadow: `0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px ${project.accent}15, inset 0 1px 1px rgba(255,255,255,0.05)`,
+            backdropFilter: 'blur(10px)'
+        }}>
         {/* Mini browser chrome */}
-        <div style={{ background: '#0f172a', borderBottom: `1px solid ${project.accent}20`, padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 5 }}>
-            {['#ef4444', '#eab308', '#22c55e'].map(c => <div key={c} style={{ width: 7, height: 7, borderRadius: '50%', background: c }} />)}
-            <div style={{ flex: 1, height: 12, background: 'rgba(255,255,255,0.06)', borderRadius: 4, margin: '0 8px' }} />
+        <div style={{ background: 'rgba(15,23,42,0.9)', borderBottom: `1px solid ${project.accent}20`, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 6 }}>
+            {['#ef4444', '#eab308', '#22c55e'].map(c => <div key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c }} />)}
+            <div style={{ flex: 1, height: 14, background: 'rgba(255,255,255,0.04)', borderRadius: 4, margin: '0 10px', display: 'flex', alignItems: 'center', paddingLeft: 8 }}>
+                <span className="text-[7px] text-slate-500 font-mono tracking-wider">localhost:3000</span>
+            </div>
         </div>
         {/* Fake content rows */}
-        <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             {/* Header row */}
             <div style={{ display: 'flex', gap: 6, marginBottom: 4 }}>
                 {project.mockupBadges.map(b => (
-                    <div key={b} style={{ fontSize: 8, padding: '2px 7px', borderRadius: 4, background: `${project.accent}25`, color: project.accent, fontFamily: 'monospace', fontWeight: 700 }}>{b}</div>
+                    <div key={b} style={{ fontSize: 9, padding: '3px 8px', borderRadius: 4, background: `${project.accent}15`, color: project.accent, fontFamily: 'monospace', fontWeight: 600 }}>{b}</div>
                 ))}
             </div>
             {project.mockupRows.map((r, i) => (
                 <motion.div key={i} initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 + i * 0.07, duration: 0.4 }}
-                    style={{ height: 7, borderRadius: 4, background: r.c, width: r.w, opacity: 0.55, transformOrigin: 'left' }} />
+                    style={{ height: 8, borderRadius: 4, background: r.c, width: r.w, opacity: 0.6, transformOrigin: 'left' }} />
             ))}
-            <div style={{ display: 'flex', gap: 6, marginTop: 4 }}>
-                <div style={{ flex: 1, height: 22, borderRadius: 5, background: project.accent, opacity: 0.7 }} />
-                <div style={{ width: 60, height: 22, borderRadius: 5, background: 'rgba(255,255,255,0.06)' }} />
+            <div style={{ display: 'flex', gap: 6, marginTop: 6 }}>
+                <div style={{ flex: 1, height: 26, borderRadius: 6, background: project.accent, opacity: 0.8 }} />
+                <div style={{ width: 70, height: 26, borderRadius: 6, background: 'rgba(255,255,255,0.05)' }} />
             </div>
         </div>
-    </div>
+    </motion.div>
 );
 
 /* ── Neon animated border ── */
@@ -158,53 +164,56 @@ const ProjectCard = ({ project, index }) => {
                     </div>
 
                     {/* Top bar with category */}
-                    <div className="flex items-center justify-between px-5 pt-5 pb-3 relative z-10">
+                    <div className="flex items-center justify-between px-6 pt-6 pb-4 relative z-10">
                         <span style={{
-                            fontSize: 10, fontFamily: 'monospace', letterSpacing: '0.12em',
+                            fontSize: 11, fontFamily: 'monospace', letterSpacing: '0.1em',
                             color: project.accent, background: `${project.accent}15`,
-                            padding: '3px 10px', borderRadius: 20, fontWeight: 700,
+                            padding: '4px 12px', borderRadius: 24, fontWeight: 700,
                             border: `1px solid ${project.accent}30`,
+                            boxShadow: `0 0 10px ${project.accent}20`
                         }}>
                             {project.category.toUpperCase()}
                         </span>
-                        <div className="flex items-center gap-1.5">
-                            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: project.accent }} />
-                            <span className="text-xs text-slate-400 font-mono">live</span>
+                        <div className="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-700/50">
+                            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: project.accent, boxShadow: `0 0 8px ${project.accent}` }} />
+                            <span className="text-xs text-slate-300 font-mono">live</span>
                         </div>
                     </div>
 
                     {/* App mockup preview */}
-                    <div className="flex-1 flex items-center justify-center relative z-10 px-4">
+                    <div className="flex-1 flex items-center justify-center relative z-10 px-6 mt-2 mb-4">
                         <AppMockup project={project} />
                     </div>
 
                     {/* Project title + emoji */}
-                    <div className="px-5 pt-3 pb-2 relative z-10">
-                        <div className="flex items-center gap-3 mb-3">
-                            <span className="text-3xl">{project.emoji}</span>
-                            <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                    <div className="px-6 pt-3 pb-3 relative z-10 bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent flex-1 flex flex-col justify-end">
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="text-4xl filter drop-shadow-lg">{project.emoji}</span>
+                            <h3 className="text-2xl font-black text-white tracking-tight">{project.title}</h3>
                         </div>
 
                         {/* Metric badges */}
-                        <div className="flex flex-wrap gap-2 mb-3">
+                        <div className="flex flex-wrap gap-2 mb-4">
                             {project.metrics.map((m, i) => (
-                                <div key={i} className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full"
-                                    style={{ background: `${project.accent}18`, color: project.accent, border: `1px solid ${project.accent}30` }}>
+                                <div key={i} className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full backdrop-blur-md"
+                                    style={{ background: 'rgba(5,13,18,0.6)', color: project.accent, border: `1px solid ${project.accent}30` }}>
                                     {m.icon} {m.label}
                                 </div>
                             ))}
                         </div>
 
                         {/* Tech icons strip */}
-                        <div className="flex items-center gap-2 pb-4">
+                        <div className="flex items-center gap-2.5 pb-2">
                             {project.tags.map(t => (
-                                <div key={t.name} className="flex items-center gap-1.5 px-2 py-1 rounded-lg"
-                                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                                    <img src={t.icon} alt={t.name} width={14} height={14} style={{ objectFit: 'contain' }} />
-                                    <span className="text-[10px] text-slate-400">{t.name}</span>
+                                <div key={t.name} className="flex items-center justify-center w-8 h-8 rounded-lg transition-transform hover:scale-110"
+                                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
+                                    title={t.name}>
+                                    <img src={t.icon} alt={t.name} width={16} height={16} style={{ objectFit: 'contain' }} />
                                 </div>
                             ))}
-                            <span className="ml-auto text-[10px] text-slate-500 font-mono">Hover to flip →</span>
+                            <span className="ml-auto text-[11px] text-teal-400/80 font-mono tracking-wide flex items-center gap-1">
+                                hover to flip <span className="animate-bounce-x">→</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -296,9 +305,12 @@ const Projects = () => (
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 className="text-center mb-16"
             >
-                <p className="text-sm font-mono tracking-widest text-indigo-400 mb-3">✦ PORTFOLIO</p>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                    Featured <span className="text-cyan-400">Projects</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 w-fit" style={{ background: 'rgba(20,184,166,0.1)', borderColor: 'rgba(20,184,166,0.2)', color: '#14b8a6' }}>
+                    <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#14b8a6' }}></span>
+                    <span className="text-xs font-mono tracking-widest">PORTFOLIO</span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                    Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Works</span>
                 </h2>
                 <p className="text-slate-400 max-w-xl mx-auto">Highlights from my journey building real-world digital solutions.</p>
                 <p className="text-slate-500 text-sm font-mono mt-2">Click a card to flip and read the full case study →</p>

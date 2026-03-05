@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Github, Linkedin, Send, Zap } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Send, Zap, Phone } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const SERVICE_ID = 'service_v5hnjmf';
@@ -135,10 +135,14 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                        Let's <span className="text-cyan-400">Connect</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 w-fit" style={{ background: 'rgba(20,184,166,0.1)', borderColor: 'rgba(20,184,166,0.2)', color: '#14b8a6' }}>
+                        <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#14b8a6' }}></span>
+                        <span className="text-xs font-mono tracking-widest">CONTACT</span>
+                    </div>
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                        Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Connect</span>
                     </h2>
-                    <p className="text-slate-400 max-w-xl mx-auto text-lg">
+                    <p className="text-slate-400 max-w-xl mx-auto text-lg font-light">
                         Have a project in mind? Let's build something extraordinary together.
                     </p>
                 </motion.div>
@@ -151,54 +155,61 @@ const Contact = () => {
                         className="lg:col-span-2 flex flex-col gap-6"
                     >
                         {/* Info card */}
-                        <div className="rounded-2xl p-6 relative overflow-hidden"
-                            style={{ background: 'rgba(15,23,42,0.7)', border: '1px solid rgba(34,211,238,0.15)', backdropFilter: 'blur(12px)' }}>
-                            <div className="absolute inset-0 pointer-events-none"
-                                style={{ background: 'radial-gradient(ellipse at top left, rgba(34,211,238,0.08) 0%, transparent 60%)' }} />
-                            <Zap size={28} className="text-cyan-400 mb-4" />
-                            <h3 className="text-xl font-bold text-white mb-2">Open to Opportunities</h3>
-                            <p className="text-slate-400 text-sm leading-relaxed">
-                                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                        <div className="rounded-2xl p-8 relative overflow-hidden group"
+                            style={{ background: 'rgba(5, 13, 20, 0.6)', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}>
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                                style={{ background: 'radial-gradient(circle at top right, rgba(20,184,166,0.15) 0%, transparent 70%)' }} />
+                            <div className="absolute top-0 left-0 w-full h-[2px] opacity-20 group-hover:opacity-100 transition-opacity" style={{ background: `linear-gradient(90deg, transparent, #14b8a6, transparent)` }} />
+
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ background: 'rgba(20,184,166,0.1)', border: '1px solid rgba(20,184,166,0.2)' }}>
+                                <Zap size={24} className="text-teal-400" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">Open to Opportunities</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed font-light">
+                                I'm currently looking for full-time Software Engineering roles. If you have an exciting project or a matching position, I'd love to chat.
                             </p>
                         </div>
 
                         {/* Contact links */}
-                        {[
-                            { icon: <Mail size={18} />, label: 'paraspathania705@gmail.com', color: '#22d3ee' },
-                            { icon: <MapPin size={18} />, label: 'India', color: '#f97316' },
-                            { icon: <Github size={18} />, label: 'https://github.com/paraspathania', color: '#a855f7' },
-                            { icon: <Linkedin size={18} />, label: 'www.linkedin.com/in/paras-pathania', color: '#34d399' },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 * i }}
-                                whileHover={{ x: 6, boxShadow: `0 0 20px ${item.color}20` }}
-                                className="flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all"
-                                style={{ background: 'rgba(30,41,59,0.5)', border: `1px solid rgba(71,85,105,0.3)` }}
-                            >
-                                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                                    style={{ background: `${item.color}15`, color: item.color }}>
-                                    {item.icon}
-                                </div>
-                                <span className="text-slate-300 text-sm">{item.label}</span>
-                            </motion.div>
-                        ))}
+                        <div className="flex flex-col gap-3">
+                            {[
+                                { icon: <Phone size={18} />, label: '+91 9878105976', href: 'tel:+919878105976', color: '#10b981' },
+                                { icon: <Mail size={18} />, label: 'paraspathania705@gmail.com', href: 'mailto:paraspathania705@gmail.com', color: '#14b8a6' },
+                                { icon: <Linkedin size={18} />, label: 'LinkedIn Profile', href: 'https://www.linkedin.com/in/paras-pathania', color: '#6366f1' },
+                                { icon: <Github size={18} />, label: 'GitHub Projects', href: 'https://github.com/paraspathania', color: '#a855f7' },
+                                { icon: <MapPin size={18} />, label: 'India', color: '#f59e0b', disableHover: true },
+                            ].map((item, i) => (
+                                <motion.a
+                                    key={i} href={item.href || '#'} target={item.href ? "_blank" : undefined} rel="noopener noreferrer"
+                                    initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 * i }}
+                                    whileHover={{ x: 6, background: 'rgba(255,255,255,0.03)' }}
+                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all border border-transparent hover:border-slate-700/50"
+                                    style={{ background: 'rgba(5, 13, 20, 0.4)' }}
+                                >
+                                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
+                                        style={{ background: `${item.color}15`, color: item.color, border: `1px solid ${item.color}30` }}>
+                                        {item.icon}
+                                    </div>
+                                    <span className="text-slate-300 text-sm font-medium">{item.label}</span>
+                                </motion.a>
+                            ))}
+                        </div>
                     </motion.div>
 
                     {/* ── Right form ── */}
                     <motion.div
                         initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
                         className="lg:col-span-3 rounded-2xl p-8 relative overflow-hidden"
-                        style={{ background: 'rgba(15,23,42,0.7)', border: '1px solid rgba(34,211,238,0.15)', backdropFilter: 'blur(12px)' }}
+                        style={{ background: 'rgba(5, 13, 20, 0.8)', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}
                     >
                         {/* Corner glow accent */}
-                        <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none"
-                            style={{ background: 'radial-gradient(circle at top right, rgba(168,85,247,0.12) 0%, transparent 70%)' }} />
-                        <div className="absolute bottom-0 left-0 w-48 h-48 pointer-events-none"
-                            style={{ background: 'radial-gradient(circle at bottom left, rgba(34,211,238,0.08) 0%, transparent 70%)' }} />
+                        <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none"
+                            style={{ background: 'radial-gradient(circle at top right, rgba(99,102,241,0.08) 0%, transparent 70%)' }} />
+                        <div className="absolute bottom-0 left-0 w-64 h-64 pointer-events-none"
+                            style={{ background: 'radial-gradient(circle at bottom left, rgba(20,184,166,0.08) 0%, transparent 70%)' }} />
 
-                        <h3 className="text-xl font-bold text-white mb-6 font-mono">
-                            <span className="text-cyan-400">{'>'}</span> Send a Message
+                        <h3 className="text-2xl font-bold text-white mb-8 tracking-tight">
+                            Send a <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Message</span>
                         </h3>
 
                         <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
@@ -211,16 +222,16 @@ const Contact = () => {
                             <motion.button
                                 type="submit"
                                 disabled={submitting || sent || error}
-                                whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(34,211,238,0.3)' }}
+                                whileHover={{ scale: 1.01, boxShadow: '0 0 40px rgba(20,184,166,0.3)' }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full py-3.5 rounded-xl font-semibold text-white relative overflow-hidden flex items-center justify-center gap-2 transition-all"
+                                className="w-full py-4 rounded-xl font-bold text-white relative overflow-hidden flex items-center justify-center gap-2 transition-all mt-6"
                                 style={{
                                     background: sent
-                                        ? 'linear-gradient(135deg,#34d399,#059669)'
+                                        ? 'linear-gradient(135deg,#10b981,#059669)'
                                         : error
                                             ? 'linear-gradient(135deg,#ef4444,#b91c1c)'
-                                            : 'linear-gradient(135deg,#22d3ee,#6366f1)',
-                                    boxShadow: '0 0 0 1px rgba(34,211,238,0.3)',
+                                            : 'linear-gradient(135deg,#14b8a6,#6366f1)',
+                                    border: '1px solid rgba(255,255,255,0.1)',
                                 }}
                             >
                                 {/* Shimmer */}

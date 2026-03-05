@@ -5,6 +5,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
+import Education from './sections/Education';
 import Contact from './sections/Contact';
 import ScrollProgress from './components/ui/ScrollProgress';
 import StarField from './components/ui/StarField';
@@ -20,6 +21,7 @@ function App() {
       <About />
       <Skills />
       <Projects />
+      <Education />
       <Contact />
       <Footer />
     </div>
@@ -27,4 +29,5 @@ function App() {
 }
 
 export default App;
+
 
