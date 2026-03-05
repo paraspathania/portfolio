@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="relative overflow-hidden pt-8 pb-4" style={{ background: '#03080c' }}>
+        <footer className="relative overflow-hidden pt-8 pb-4">
             {/* Top glowing line */}
             <div className="absolute top-0 left-0 w-full h-px opacity-20" style={{ background: 'linear-gradient(90deg, transparent, #14b8a6, #6366f1, transparent)' }} />
 

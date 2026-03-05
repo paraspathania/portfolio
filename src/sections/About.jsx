@@ -1,7 +1,6 @@
 ﻿import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Code2 } from 'lucide-react';
-import StarField from '../components/ui/StarField';
 
 /* ── Orbiting ring that wraps around the tilt card ── */
 const OrbitRing = ({ size, duration, color, tilt = 0 }) => (
@@ -52,14 +51,7 @@ const About = () => {
     }, []);
 
     return (
-        <section id="about" className="py-20 relative overflow-hidden" style={{ background: '#050d12' }}>
-            <StarField />
-
-            {/* Animated grid background */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{
-                backgroundImage: 'linear-gradient(rgba(20,184,166,1) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,1) 1px, transparent 1px)',
-                backgroundSize: '60px 60px',
-            }} />
+        <section id="about" className="py-20 relative overflow-hidden">
 
             {/* Aurora orbs */}
             <div className="absolute top-10 right-20 w-56 h-56 rounded-full blur-3xl animate-pulse pointer-events-none" style={{ background: 'rgba(20,184,166,0.07)' }} />

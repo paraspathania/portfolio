@@ -4,10 +4,11 @@ import SkillConstellation from '../components/ui/SkillConstellation';
 
 const Skills = () => {
     return (
-        <section id="skills" className="py-24 overflow-hidden relative" style={{ background: '#050d12' }}>
-            {/* Aurora blobs */}
-            <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none" style={{ background: 'rgba(20,184,166,0.07)' }} />
-            <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl translate-y-1/2 translate-x-1/2 pointer-events-none" style={{ background: 'rgba(99,102,241,0.07)' }} />
+        <section id="skills" className="py-24 overflow-hidden relative">
+            {/* Darker radial center to separate skills from the moving 3D background without using blur */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+                background: 'radial-gradient(circle at center, rgba(2, 6, 12, 0.7) 0%, rgba(3, 8, 12, 0.3) 40%, transparent 85%)'
+            }} />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div

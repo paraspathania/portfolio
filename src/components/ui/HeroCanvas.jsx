@@ -2,42 +2,98 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, PointMaterial, Float } from '@react-three/drei';
 
-/* ── Floating 3D icosahedron mesh ── */
-function FloatingShape() {
+/* ── Draggable 3D Shape ── */
+function DraggableShape({ position, args, color, wireframe = false, type = 'icosahedron' }) {
     const meshRef = useRef();
-    useFrame((state) => {
-        const t = state.clock.elapsedTime;
-        meshRef.current.rotation.x = t * 0.12;
-        meshRef.current.rotation.y = t * 0.18;
-        meshRef.current.position.y = Math.sin(t * 0.5) * 0.3;
+    const [dragging, setDragging] = useState(false);
+    const [hovered, setHovered] = useState(false);
+    const { size, viewport } = useThree();
+
+    // Velocity for free drift
+    const velocity = useRef({
+        x: (Math.random() - 0.5) * 0.008,
+        y: (Math.random() - 0.5) * 0.008
     });
+
+    // Simple drag behavior
+    const handlePointerDown = (e) => {
+        e.stopPropagation();
+        e.target.setPointerCapture(e.pointerId);
+        setDragging(true);
+        // Stop drifting while dragging
+        velocity.current = { x: 0, y: 0 };
+    };
+
+    const handlePointerUp = (e) => {
+        e.stopPropagation();
+        e.target.releasePointerCapture(e.pointerId);
+        setDragging(false);
+        // Re-inject a slight drift velocity
+        velocity.current = {
+            x: (Math.random() - 0.5) * 0.015,
+            y: (Math.random() - 0.5) * 0.015
+        };
+    };
+
+    const handlePointerMove = (e) => {
+        if (!dragging) return;
+        const x = (e.clientX / size.width) * 2 - 1;
+        const y = -(e.clientY / size.height) * 2 + 1;
+
+        meshRef.current.position.x = x * viewport.width / 2;
+        meshRef.current.position.y = y * viewport.height / 2;
+    };
+
+    useFrame((state) => {
+        if (!dragging) {
+            meshRef.current.rotation.x += 0.005;
+            meshRef.current.rotation.y += 0.008;
+
+            // Free drift movement
+            meshRef.current.position.x += velocity.current.x;
+            meshRef.current.position.y += velocity.current.y;
+
+            // Bounce off edges of the 3D viewport
+            const margin = 1.5;
+            if (Math.abs(meshRef.current.position.x) > viewport.width / 2 + margin) {
+                velocity.current.x *= -1;
+                meshRef.current.position.x = Math.sign(meshRef.current.position.x) * (viewport.width / 2 + margin);
+            }
+            if (Math.abs(meshRef.current.position.y) > viewport.height / 2 + margin) {
+                velocity.current.y *= -1;
+                meshRef.current.position.y = Math.sign(meshRef.current.position.y) * (viewport.height / 2 + margin);
+            }
+        }
+    });
+
     return (
-        <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.6}>
-            <mesh ref={meshRef} position={[2.5, 0, -2]}>
-                <icosahedronGeometry args={[1.4, 0]} />
-                <meshStandardMaterial color="#2dd4bf" wireframe emissive="#0d9488" emissiveIntensity={0.5} />
-            </mesh>
-        </Float>
+        <mesh
+            ref={meshRef}
+            position={position}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+            onPointerMove={handlePointerMove}
+            onPointerOver={() => setHovered(true)}
+            onPointerOut={() => setHovered(false)}
+            scale={hovered || dragging ? 1.1 : 1}
+        >
+            {type === 'icosahedron' ? (
+                <icosahedronGeometry args={args} />
+            ) : (
+                <octahedronGeometry args={args} />
+            )}
+            <meshStandardMaterial
+                color={color}
+                wireframe={wireframe}
+                emissive={color}
+                emissiveIntensity={hovered || dragging ? 0.8 : 0.4}
+                transparent
+                opacity={0.8}
+            />
+        </mesh>
     );
 }
 
-/* ── Torus ring ── */
-function TorusRing() {
-    const ref = useRef();
-    useFrame((state) => {
-        const t = state.clock.elapsedTime;
-        ref.current.rotation.x = t * 0.3;
-        ref.current.rotation.z = t * 0.2;
-    });
-    return (
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.4}>
-            <mesh ref={ref} position={[-2.8, 1, -3]}>
-                <torusGeometry args={[0.7, 0.08, 8, 40]} />
-                <meshStandardMaterial color="#a78bfa" emissive="#7c3aed" emissiveIntensity={0.5} />
-            </mesh>
-        </Float>
-    );
-}
 
 /* ── Star field — trimmed to 600 particles ── */
 function StarParticles() {
@@ -105,21 +161,40 @@ const HeroCanvas = () => {
         return () => observer.disconnect();
     }, []);
 
+    const [isInteracting, setIsInteracting] = useState(false);
+
     return (
-        <div ref={ref} className="absolute inset-0 z-0 pointer-events-none">
+        // Switch pointer-events-auto ONLY when hovering objects
+        <div
+            ref={ref}
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} ${isInteracting ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        >
             {visible && (
                 <Canvas
                     camera={{ position: [0, 0, 5], fov: 60 }}
                     style={{ background: 'transparent' }}
                     dpr={[1, 1.5]}
                     gl={{ antialias: false, powerPreference: 'high-performance' }}
+                    onPointerMissed={() => setIsInteracting(false)}
                 >
                     <ambientLight intensity={0.3} />
                     <pointLight position={[5, 5, 5]} intensity={1} color="#14b8a6" />
                     <pointLight position={[-5, -5, 5]} intensity={0.5} color="#a78bfa" />
                     <StarParticles />
-                    <FloatingShape />
-                    <TorusRing />
+
+                    <group
+                        onPointerOver={() => setIsInteracting(true)}
+                        onPointerOut={() => setIsInteracting(false)}
+                    >
+                        <DraggableShape
+                            position={[0, 0, -2]}
+                            args={[1.6, 0]}
+                            color="#2dd4bf"
+                            wireframe
+                            type="icosahedron"
+                        />
+                    </group>
+
                     <CameraRig />
                 </Canvas>
             )}

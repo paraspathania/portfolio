@@ -92,20 +92,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden" style={{ background: '#050d12' }}>
-
-            {/* Aurora circuit grid */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{
-                backgroundImage: `
-                    linear-gradient(rgba(20,184,166,1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(20,184,166,1) 1px, transparent 1px)`,
-                backgroundSize: '80px 80px',
-            }} />
-
-            {/* Aurora radial glow */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-                background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(20,184,166,0.07) 0%, transparent 70%)',
-            }} />
+        <section id="contact" className="py-24 relative overflow-hidden">
 
             {/* Floating 3D shapes */}
             <FloatShape style={{ top: '8%', left: '4%', opacity: 0.3 }} delay={0}>

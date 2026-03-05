@@ -86,27 +86,26 @@ const StarNode = ({ skill, color, delay }) => {
                 {skill.name}
             </div>
 
-            {/* Outer glow ring around the icon */}
+            {/* Outer solid ring around the icon instead of blur */}
             <motion.div
                 style={{
                     position: 'absolute',
-                    background: color,
-                    filter: `blur(${glowPx + 4}px)`,
+                    border: `1px solid ${color}40`,
                     opacity: 0.15,
                     borderRadius: '50%',
-                    width: dotPx * 2.2,
-                    height: dotPx * 2.2,
-                    top: -(dotPx * 0.6),
-                    left: -(dotPx * 0.6),
+                    width: dotPx * 1.8,
+                    height: dotPx * 1.8,
+                    top: -(dotPx * 0.4),
+                    left: -(dotPx * 0.4),
                     pointerEvents: 'none',
                 }}
                 animate={showCard
-                    ? { scale: 2.8, opacity: 0.45 }
-                    : { scale: [1, 1.4, 1], opacity: [0.12, 0.28, 0.12] }
+                    ? { scale: 1.5, opacity: 0.4 }
+                    : { scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }
                 }
                 transition={showCard
                     ? { duration: 0.2 }
-                    : { duration: 2.2 + delay * 0.3, repeat: Infinity, delay }
+                    : { duration: 3, repeat: Infinity, delay }
                 }
             />
 
@@ -119,16 +118,15 @@ const StarNode = ({ skill, color, delay }) => {
                     borderRadius: '50%',
                     cursor: 'pointer',
                     translate: `-${dotPx / 2}px -${dotPx / 2}px`,
-                    background: 'rgba(10,15,30,0.88)',
-                    border: `1.5px solid ${color}80`,
-                    boxShadow: `0 0 ${dotPx * 0.5}px ${color}40, 0 0 ${dotPx}px ${color}15`,
+                    background: 'rgba(8, 12, 24, 0.98)',
+                    border: `2px solid ${color}`,
+                    boxShadow: `0 0 ${dotPx * 0.5}px ${color}30`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     overflow: 'hidden',
                     outline: pinned ? `2px solid ${color}` : 'none',
                     outlineOffset: 3,
-                    backdropFilter: 'blur(4px)',
                 }}
-                animate={showCard ? { scale: 1.25, boxShadow: `0 0 ${dotPx * 1.5}px ${color}90` } : { scale: [1, 1.05, 1] }}
+                animate={showCard ? { scale: 1.25, boxShadow: `0 0 ${dotPx * 1.2}px ${color}80` } : { scale: [1, 1.05, 1] }}
                 transition={showCard ? { duration: 0.15 } : { duration: 2.2, repeat: Infinity, delay }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
@@ -346,11 +344,7 @@ const SkillConstellation = () => {
                                 <stop offset="100%" stopColor={c.color} stopOpacity="0.2" />
                             </linearGradient>
                         ))}
-                        {/* Glow filter for lines */}
-                        <filter id="line-glow">
-                            <feGaussianBlur stdDeviation="1.5" result="blur" />
-                            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                        </filter>
+                        {/* Sharpened lines, removed filter to avoid blur conflict */}
                     </defs>
 
                     {constellations.map(c =>
@@ -362,12 +356,11 @@ const SkillConstellation = () => {
                                     x1={`${sA.x}%`} y1={`${sA.y}%`}
                                     x2={`${sB.x}%`} y2={`${sB.y}%`}
                                     stroke={`url(#grad-${c.id})`}
-                                    strokeWidth="1.5"
+                                    strokeWidth="2.5"
                                     strokeDasharray="6 5"
                                     strokeDashoffset={dashOffset}
-                                    filter="url(#line-glow)"
                                     initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
+                                    whileInView={{ opacity: 0.8 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }}
                                 />
@@ -418,7 +411,7 @@ const SkillConstellation = () => {
                         className="absolute rounded-full pointer-events-none"
                         style={{
                             left: n.l, top: n.t, width: n.w, height: n.w,
-                            background: `radial-gradient(circle, ${n.c}09 0%, transparent 70%)`,
+                            background: `radial-gradient(circle, ${n.c}15 0%, transparent 70%)`,
                             zIndex: 2,
                         }}
                         animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.45, 0.25] }}

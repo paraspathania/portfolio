@@ -8,13 +8,13 @@ import Projects from './sections/Projects';
 import Education from './sections/Education';
 import Contact from './sections/Contact';
 import ScrollProgress from './components/ui/ScrollProgress';
-import StarField from './components/ui/StarField';
+import GlobalSpace from './components/layout/GlobalSpace';
 
 function App() {
   return (
-    <div className="bg-[#0f172a] min-h-screen text-slate-100 font-sans selection:bg-teal-400/30 selection:text-orange-200">
-      {/* Fixed star-field behind everything */}
-      <StarField />
+    <div className="bg-transparent min-h-screen text-slate-100 font-sans selection:bg-teal-400/30 selection:text-orange-200">
+      {/* Fixed global 3D space theme behind everything */}
+      <GlobalSpace />
       <ScrollProgress />
       <Navbar />
       <Hero />

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Mail, Download } from 'lucide-react';
 import Typewriter from 'typewriter-effect';
 import CodeDisplay from '../components/ui/CodeDisplay';
-import HeroCanvas from '../components/ui/HeroCanvas';
 
 const stats = [
     { value: '2+', label: 'Years Exp.' },
@@ -25,26 +24,6 @@ const techPills = [
 const Hero = () => {
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
-            {/* 3D Canvas Background */}
-            <div className="absolute inset-0 pointer-events-none z-0">
-                <HeroCanvas />
-            </div>
-
-            {/* Aurora drift blobs */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <motion.div
-                    animate={{ x: [0, 60, 0], y: [0, -40, 0] }}
-                    transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -top-20 -left-20 w-[500px] h-[500px] rounded-full"
-                    style={{ background: 'radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%)' }}
-                />
-                <motion.div
-                    animate={{ x: [0, -50, 0], y: [0, 60, 0] }}
-                    transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-                    className="absolute -bottom-40 -right-20 w-[600px] h-[600px] rounded-full"
-                    style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 70%)' }}
-                />
-            </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-14">

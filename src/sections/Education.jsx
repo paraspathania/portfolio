@@ -160,17 +160,7 @@ const Education = () => {
     const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
     return (
-        <section id="education" className="py-24 relative overflow-hidden" style={{ background: '#050d12' }}>
-
-            {/* Background elements */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-                backgroundImage: 'linear-gradient(rgba(20,184,166,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.03) 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-            }} />
-
-            {/* Subtle glow blobs */}
-            <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full blur-[100px] pointer-events-none opacity-20" style={{ background: '#6366f1' }} />
-            <div className="absolute bottom-1/4 right-0 w-80 h-80 rounded-full blur-[100px] pointer-events-none opacity-20" style={{ background: '#14b8a6' }} />
+        <section id="education" className="py-24 relative overflow-hidden">
 
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={containerRef}>
 

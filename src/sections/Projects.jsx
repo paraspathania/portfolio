@@ -291,14 +291,7 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Projects = () => (
-    <section id="projects" className="py-24 relative overflow-hidden" style={{ background: '#050d12' }}>
-        {/* Aurora dot grid */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-            backgroundImage: 'linear-gradient(rgba(20,184,166,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.05) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-        }} />
-        <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(99,102,241,0.06)' }} />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(20,184,166,0.06)' }} />
+    <section id="projects" className="py-24 relative overflow-hidden">
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
