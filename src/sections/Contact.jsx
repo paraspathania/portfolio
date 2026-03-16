@@ -1,11 +1,11 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Github, Linkedin, Send, Zap, Phone } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const SERVICE_ID = 'service_v5hnjmf';
-const TEMPLATE_ID = 'template_l53f5md';
-const PUBLIC_KEY = '8qBb527EZ7tCWJWg8';
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 /* ── 3D floating shape ── */
 const FloatShape = ({ children, style, delay = 0 }) => (
