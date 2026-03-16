@@ -1,6 +1,6 @@
 ﻿import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Code2 } from 'lucide-react';
+import { Code2, Cpu, Globe, Zap, Server, Layout } from 'lucide-react';
 
 /* ── Orbiting ring that wraps around the tilt card ── */
 const OrbitRing = ({ size, duration, color, tilt = 0 }) => (
@@ -27,6 +27,7 @@ const floatingBadges = [
     { label: '<FullStack />', x: '105%', y: '20%', delay: 0.6 },
     { label: 'git commit -m "🚀"', x: '-22%', y: '72%', delay: 1.1 },
     { label: 'npm run start', x: '102%', y: '68%', delay: 0.3 },
+    { label: 'sql.optimize()', x: '40%', y: '-15%', delay: 1.5 },
 ];
 
 const About = () => {
@@ -165,13 +166,37 @@ const About = () => {
                             </motion.h2>
 
                             <motion.p
-                                className="text-slate-300 text-lg mb-10 leading-relaxed font-light max-w-xl"
+                                className="text-slate-300 text-lg mb-6 leading-relaxed font-light max-w-xl"
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
                             >
-                                Hello! I'm a passionate full-stack developer obsessed with creating pixel-perfect,
-                                highly performant web applications. I bridge the gap between complex backend architecture
-                                and intuitive frontend design, turning complex problems into elegant solutions.
+                                Hello! I'm a passionate full-stack developer currently pursuing my B.Tech at Lovely Professional University. My journey in tech is driven by a deep curiosity for building systems that are both powerful and elegant.
                             </motion.p>
+                            <motion.p
+                                className="text-slate-400 text-base mb-10 leading-relaxed font-light max-w-xl"
+                                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }}
+                            >
+                                I specialize in bridging the gap between complex backend logic and intuitive frontend interfaces. From architecting high-volume government data portals to crafting pixel-perfect React components, I focus on delivering scalable solutions that prioritize user experience.
+                            </motion.p>
+
+                            {/* Core Expertise Grid */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                                {[
+                                    { icon: <Server size={18} />, title: 'Full-Stack Development', text: 'Building end-to-end applications with PHP, Node, and MySQL.' },
+                                    { icon: <Layout size={18} />, title: 'Responsive Design', text: 'Crafting fluid, intuitive UIs with Tailwind CSS and Framer Motion.' },
+                                ].map((item, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 + i * 0.1 }}
+                                        className="flex gap-4 p-4 rounded-2xl bg-slate-900/40 border border-slate-800/50 hover:border-teal-500/30 transition-colors"
+                                    >
+                                        <div className="text-teal-400 mt-1">{item.icon}</div>
+                                        <div>
+                                            <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
+                                            <p className="text-slate-400 text-xs leading-relaxed">{item.text}</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
 
                             {/* Premium Bento-style Stats */}
                             <div className="grid grid-cols-2 gap-5 lg:gap-6">

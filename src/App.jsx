@@ -6,6 +6,7 @@ import About from './sections/About';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import Education from './sections/Education';
+import Certifications from './sections/Certifications';
 import Contact from './sections/Contact';
 import ScrollProgress from './components/ui/ScrollProgress';
 import GlobalSpace from './components/layout/GlobalSpace';
@@ -22,6 +23,7 @@ function App() {
       <Skills />
       <Projects />
       <Education />
+      <Certifications />
       <Contact />
       <Footer />
     </div>

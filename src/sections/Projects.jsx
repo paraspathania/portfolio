@@ -1,6 +1,6 @@
 ﻿import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Star, Zap, TrendingUp, Shield } from 'lucide-react';
+import { Github, Star, Zap, TrendingUp, Shield } from 'lucide-react';
 
 const projects = [
     {
@@ -19,7 +19,7 @@ const projects = [
             { icon: <Star size={13} />, label: 'Auth + Admin' },
             { icon: <Zap size={13} />, label: 'Pagination' },
         ],
-        github: 'https://github.com/paraspathania/project_job_recruit', demo: '#',
+        github: 'https://github.com/paraspathania/project_job_recruit',
         accent: '#6366f1',
         gradientFrom: '#1e1b4b', gradientTo: '#1e293b',
         emoji: '💼',
@@ -47,7 +47,7 @@ const projects = [
             { icon: <Shield size={13} />, label: '99.9% uptime' },
             { icon: <Zap size={13} />, label: 'High volume' },
         ],
-        github: 'https://github.com/paraspathania/smartdoors_indfes', demo: '#',
+        github: 'https://github.com/paraspathania/smartdoors_indfes',
         accent: '#10b981',
         gradientFrom: '#064e3b', gradientTo: '#1e293b',
         emoji: '🏛️',
@@ -269,19 +269,13 @@ const ProjectCard = ({ project, index }) => {
                         ))}
                     </div>
 
-                    {/* CTA buttons */}
-                    <div className="flex gap-3 relative z-[100]">
+                    {/* CTA button */}
+                    <div className="relative z-[100]">
                         <button
                             onClick={(e) => { e.stopPropagation(); window.open(project.github, '_blank', 'noopener,noreferrer'); }}
-                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white hover:scale-105 transition-transform cursor-pointer"
+                            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white hover:scale-105 transition-transform cursor-pointer"
                             style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }}>
                             <Github size={15} /> Source Code
-                        </button>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); window.open(project.demo, '_blank', 'noopener,noreferrer'); }}
-                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white hover:scale-105 transition-transform cursor-pointer"
-                            style={{ background: `linear-gradient(135deg, ${project.accent}, #6366f1)`, boxShadow: `0 0 20px ${project.accent}35` }}>
-                            <ExternalLink size={15} /> Live Demo
                         </button>
                     </div>
                 </div>

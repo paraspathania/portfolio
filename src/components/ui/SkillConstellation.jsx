@@ -4,46 +4,56 @@ import { motion, AnimatePresence } from 'framer-motion';
 /* ─── Skill data: each skill has x/y%, size (1-3), and optional label offset ── */
 const constellations = [
     {
-        id: 'frontend', label: 'FRONTEND', color: '#22d3ee', labelX: 13, labelY: 6,
+        id: 'languages', label: 'LANGUAGES', color: '#22d3ee', labelX: 4, labelY: 4,
         skills: [
-            { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', x: 24, y: 20, size: 3 },
-            { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', x: 34, y: 32, size: 3 },
-            { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', x: 12, y: 32, size: 2 },
-            { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', x: 18, y: 48, size: 2 },
-            { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', x: 8, y: 60, size: 2 },
+            { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', x: 12, y: 10, size: 3 },
+            { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', x: 28, y: 18, size: 3 },
+            { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', x: 6, y: 26, size: 2 },
+            { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', x: 22, y: 32, size: 2 },
+            { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', x: 38, y: 8, size: 2 },
         ],
-        edges: [[0, 2], [2, 3], [3, 4], [0, 1], [1, 2]],
+        edges: [[0, 1], [0, 2], [1, 3], [2, 3], [1, 4]],
     },
     {
-        id: 'backend', label: 'BACKEND', color: '#f97316', labelX: 54, labelY: 6,
+        id: 'frameworks', label: 'FRAMEWORKS', color: '#f97316', labelX: 56, labelY: 4,
         skills: [
-            { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', x: 58, y: 18, size: 3 },
-            { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', invert: true, x: 70, y: 28, size: 2 },
-            { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', x: 62, y: 38, size: 3 },
-            { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', x: 76, y: 18, size: 2 },
-            { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', x: 84, y: 32, size: 2 },
+            { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', x: 62, y: 10, size: 3 },
+            { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', x: 78, y: 16, size: 2 },
+            { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', invert: true, x: 90, y: 10, size: 2 },
+            { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', x: 68, y: 28, size: 2 },
+            { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', x: 84, y: 28, size: 2 },
         ],
-        edges: [[0, 1], [1, 2], [0, 3], [3, 4], [1, 3]],
+        edges: [[0, 1], [1, 2], [0, 3], [3, 4], [1, 4]],
     },
     {
-        id: 'database', label: 'DATABASE', color: '#a855f7', labelX: 36, labelY: 60,
+        id: 'backend', label: 'BACKEND', color: '#34d399', labelX: 30, labelY: 38,
         skills: [
-            { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', x: 44, y: 68, size: 2 },
-            { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', x: 32, y: 78, size: 3 },
-            { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', x: 54, y: 80, size: 2 },
+            { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', x: 38, y: 44, size: 3 },
+            { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg', x: 54, y: 42, size: 2 },
+            { name: 'RESTful APIs', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg', x: 44, y: 56, size: 2 },
+            { name: 'Middleware', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg', x: 60, y: 54, size: 2 },
+        ],
+        edges: [[0, 1], [0, 2], [1, 3], [2, 3]],
+    },
+    {
+        id: 'database', label: 'DATABASE', color: '#a855f7', labelX: 4, labelY: 66,
+        skills: [
+            { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', x: 14, y: 74, size: 3 },
+            { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', x: 30, y: 80, size: 2 },
+            { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', x: 10, y: 88, size: 2 },
         ],
         edges: [[0, 1], [0, 2]],
     },
     {
-        id: 'devops', label: 'DEVOPS', color: '#34d399', labelX: 76, labelY: 51,
+        id: 'tools', label: 'TOOLS & PLATFORMS', color: '#eab308', labelX: 54, labelY: 66,
         skills: [
-            { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', x: 66, y: 62, size: 3 },
-            { name: 'Jenkins', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', x: 78, y: 62, size: 1 },
-            { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg', x: 72, y: 75, size: 2 },
-            { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', x: 58, y: 70, size: 2 },
-            { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', invert: true, x: 86, y: 48, size: 2 },
+            { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', x: 62, y: 74, size: 3 },
+            { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', invert: true, x: 78, y: 70, size: 2 },
+            { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg', x: 56, y: 86, size: 2 },
+            { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg', x: 72, y: 86, size: 2 },
+            { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', x: 90, y: 80, size: 2 },
         ],
-        edges: [[0, 1], [1, 2], [2, 3], [3, 0], [1, 4]],
+        edges: [[0, 1], [0, 2], [1, 4], [2, 3], [3, 4]],
     },
 ];
 
@@ -237,8 +247,8 @@ const RadarSweep = () => (
     <motion.div
         style={{
             position: 'absolute',
-            left: '46%', top: '42%',
-            width: 420, height: 420,
+            left: '42%', top: '38%',
+            width: 380, height: 380,
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 3,
@@ -292,7 +302,7 @@ const SkillConstellation = () => {
         <div
             ref={containerRef}
             className="relative w-full select-none"
-            style={{ height: 560 }}
+            style={{ height: 700 }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
@@ -402,10 +412,11 @@ const SkillConstellation = () => {
 
                 {/* Pulsing nebula glows */}
                 {[
-                    { l: '15%', t: '25%', c: '#22d3ee', w: 220 },
-                    { l: '55%', t: '12%', c: '#f97316', w: 240 },
-                    { l: '33%', t: '60%', c: '#a855f7', w: 190 },
-                    { l: '63%', t: '53%', c: '#34d399', w: 210 },
+                    { l: '8%', t: '8%', c: '#22d3ee', w: 200 },
+                    { l: '58%', t: '6%', c: '#f97316', w: 200 },
+                    { l: '34%', t: '38%', c: '#34d399', w: 180 },
+                    { l: '4%', t: '66%', c: '#a855f7', w: 180 },
+                    { l: '54%', t: '64%', c: '#eab308', w: 200 },
                 ].map((n, i) => (
                     <motion.div key={i}
                         className="absolute rounded-full pointer-events-none"
@@ -425,11 +436,11 @@ const SkillConstellation = () => {
                 <span style={{ fontSize: 9, fontFamily: 'monospace', color: '#475569', letterSpacing: '0.05em' }}>
                     Click a star to pin · Move mouse to tilt
                 </span>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap justify-end gap-x-4 gap-y-1">
                     {constellations.map(c => (
                         <div key={c.id} className="flex items-center gap-1.5">
                             <div className="w-2 h-2 rounded-full" style={{ background: c.color, boxShadow: `0 0 6px ${c.color}` }} />
-                            <span style={{ fontSize: 10, fontFamily: 'monospace', color: c.color, opacity: 0.7 }}>{c.label}</span>
+                            <span style={{ fontSize: 9, fontFamily: 'monospace', color: c.color, opacity: 0.7 }}>{c.label}</span>
                         </div>
                     ))}
                 </div>
