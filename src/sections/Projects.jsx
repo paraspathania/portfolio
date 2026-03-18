@@ -1,4 +1,4 @@
-﻿import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Star, Zap, TrendingUp, Shield } from 'lucide-react';
 

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Mail, Download } from 'lucide-react';
 import Typewriter from 'typewriter-effect';

@@ -1,4 +1,4 @@
-﻿import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Cpu, Globe, Zap, Server, Layout } from 'lucide-react';
 
