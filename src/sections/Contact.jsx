@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Github, Linkedin, Send, Zap, Phone } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Send, Zap } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -160,7 +160,6 @@ const Contact = () => {
                         {/* Contact links */}
                         <div className="flex flex-col gap-3">
                             {[
-                                { icon: <Phone size={18} />, label: '+91 9878105976', href: 'tel:+919878105976', color: '#10b981' },
                                 { icon: <Mail size={18} />, label: 'paraspathania705@gmail.com', href: 'mailto:paraspathania705@gmail.com', color: '#14b8a6' },
                                 { icon: <Linkedin size={18} />, label: 'LinkedIn Profile', href: 'https://www.linkedin.com/in/paras-pathania', color: '#6366f1' },
                                 { icon: <Github size={18} />, label: 'GitHub Projects', href: 'https://github.com/paraspathania', color: '#a855f7' },

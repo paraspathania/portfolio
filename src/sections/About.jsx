@@ -1,6 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Cpu, Globe, Zap, Server, Layout } from 'lucide-react';
+import { Code2, Cpu, Globe, Zap, Server, Layout, Coffee, Music, Gamepad2, Heart, Rocket, Star, Lightbulb } from 'lucide-react';
 
 /* ── Orbiting ring that wraps around the tilt card ── */
 const OrbitRing = ({ size, duration, color, tilt = 0 }) => (
@@ -24,11 +24,25 @@ const OrbitRing = ({ size, duration, color, tilt = 0 }) => (
 /* ── Floating code badges ── */
 const floatingBadges = [
     { label: 'const dev = true', x: '-18%', y: '15%', delay: 0 },
-    { label: '<FullStack />', x: '105%', y: '20%', delay: 0.6 },
+    { label: '<MERN />', x: '105%', y: '20%', delay: 0.6 },
     { label: 'git commit -m "🚀"', x: '-22%', y: '72%', delay: 1.1 },
-    { label: 'npm run start', x: '102%', y: '68%', delay: 0.3 },
-    { label: 'sql.optimize()', x: '40%', y: '-15%', delay: 1.5 },
+    { label: 'npm run build', x: '102%', y: '68%', delay: 0.3 },
+    { label: 'REST API ✓', x: '40%', y: '-15%', delay: 1.5 },
 ];
+
+/* ── Section divider ── */
+const SectionLabel = ({ label, delay = 0 }) => (
+    <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay }}
+        className="flex items-center gap-3 mb-6"
+    >
+        <span className="h-px flex-1 bg-gradient-to-r from-teal-500/40 to-transparent" />
+        <span className="text-xs font-mono text-teal-400 tracking-widest uppercase">{label}</span>
+    </motion.div>
+);
 
 const About = () => {
     const cardRef = useRef(null);
@@ -61,7 +75,9 @@ const About = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-                    <div className="flex flex-col md:flex-row items-center gap-12">
+
+                    {/* ═══════════════════════ TOP ROW — Card + Intro ═══════════════════════ */}
+                    <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
 
                         {/* ── 3D Tilt Card with orbiting rings ── */}
                         <div className="w-full md:w-1/2 flex justify-center">
@@ -154,35 +170,53 @@ const About = () => {
                                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-400 text-sm font-mono mb-8 w-fit shadow-[0_0_15px_rgba(20,184,166,0.15)]"
                             >
                                 <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse shadow-[0_0_8px_rgba(20,184,166,0.8)]"></span>
-                                Developer Identity
+                                Full Stack Developer
                             </motion.div>
 
                             <motion.h2
                                 className="text-4xl lg:text-5xl xl:text-6xl font-black mb-6 text-white tracking-tight leading-[1.1]"
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
                             >
-                                Designing <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400 drop-shadow-[0_0_10px_rgba(45,212,191,0.3)]">Logic</span>,<br />
-                                Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 drop-shadow-[0_0_10px_rgba(129,140,248,0.3)]">Experiences</span>.
+                                Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400 drop-shadow-[0_0_10px_rgba(45,212,191,0.3)]">Scalable</span><br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 drop-shadow-[0_0_10px_rgba(129,140,248,0.3)]">Web Apps</span>.
                             </motion.h2>
 
                             <motion.p
-                                className="text-slate-300 text-lg mb-6 leading-relaxed font-light max-w-xl"
+                                className="text-slate-300 text-lg mb-4 leading-relaxed font-light max-w-xl"
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
                             >
-                                Hello! I'm a passionate full-stack developer currently pursuing my B.Tech at Lovely Professional University. My journey in tech is driven by a deep curiosity for building systems that are both powerful and elegant.
+                                I am a <strong>Full Stack Web Developer</strong> passionate about building scalable web applications and solving real-world problems through technology.
                             </motion.p>
                             <motion.p
-                                className="text-slate-400 text-base mb-10 leading-relaxed font-light max-w-xl"
+                                className="text-slate-400 text-base mb-4 leading-relaxed font-light max-w-xl"
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }}
                             >
-                                I specialize in bridging the gap between complex backend logic and intuitive frontend interfaces. From architecting high-volume government data portals to crafting pixel-perfect React components, I focus on delivering scalable solutions that prioritize user experience.
+                                I specialize in the <strong className="text-teal-400">MERN stack</strong> and enjoy designing{' '}
+                                <strong className="text-teal-400">efficient backend systems</strong>,{' '}
+                                <strong className="text-teal-400">responsive user interfaces</strong>, and{' '}
+                                <strong>reliable full-stack architectures</strong> that feel fast and intuitive.
+                            </motion.p>
+                            <motion.p
+                                className="text-slate-400 text-base mb-4 leading-relaxed font-light max-w-xl"
+                                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
+                            >
+                                My work focuses on building modern applications with <strong className="text-teal-400">React.js</strong>, <strong className="text-teal-400">Node.js</strong>, <strong className="text-teal-400">Express.js</strong>, and <strong className="text-teal-400">MongoDB</strong>, while also working with relational databases like <strong>MySQL</strong> and <strong>PostgreSQL</strong>. I build secure <strong>REST APIs</strong> with authentication using <strong className="text-teal-400">JWT</strong> and lean on <strong>Docker</strong>, <strong>Git</strong>, and <strong>Linux</strong> to ship production-ready systems.
+                            </motion.p>
+                            <motion.p
+                                className="text-slate-400 text-base mb-8 leading-relaxed font-light max-w-xl"
+                                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.35 }}
+                            >
+                                I'm currently focused on <strong>scalable system design</strong>,{' '}
+                                <strong className="text-teal-400">cloud native architectures</strong>, and shipping products that feel as good to maintain as they are to use.
                             </motion.p>
 
                             {/* Core Expertise Grid */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 {[
-                                    { icon: <Server size={18} />, title: 'Full-Stack Development', text: 'Building end-to-end applications with PHP, Node, and MySQL.' },
-                                    { icon: <Layout size={18} />, title: 'Responsive Design', text: 'Crafting fluid, intuitive UIs with Tailwind CSS and Framer Motion.' },
+                                    { icon: <Server size={18} />, title: 'Backend Systems', text: 'Building secure REST APIs with Node.js, Express, JWT auth, and production-ready deployments.' },
+                                    { icon: <Layout size={18} />, title: 'Full-Stack Architecture', text: 'Designing end-to-end MERN apps with clean UI, scalable APIs, and reliable databases.' },
+                                    { icon: <Globe size={18} />, title: 'API Integration', text: 'Connecting third-party services, webhooks, and external APIs into seamless data flows.' },
+                                    { icon: <Cpu size={18} />, title: 'Performance & DevOps', text: 'Optimizing queries, containerizing with Docker, and deploying on Linux servers.' },
                                 ].map((item, i) => (
                                     <motion.div
                                         key={i}
@@ -201,9 +235,9 @@ const About = () => {
                             {/* Premium Bento-style Stats */}
                             <div className="grid grid-cols-2 gap-5 lg:gap-6">
                                 {[
-                                    { value: '4+', label: 'Projects Completed', color: '#14b8a6', glow: 'rgba(20,184,166,0.2)' },
-                                    { value: '8+', label: 'Tech Stack', color: '#8b5cf6', glow: 'rgba(139,92,246,0.2)' },
-                                    { value: '100%', label: 'Passion', color: '#34d399', glow: 'rgba(52,211,153,0.2)' },
+                                    { value: '10+', label: 'Projects Completed', color: '#14b8a6', glow: 'rgba(20,184,166,0.2)' },
+                                    { value: '12+', label: 'Tech Stack', color: '#8b5cf6', glow: 'rgba(139,92,246,0.2)' },
+                                    { value: '2+', label: 'Years Coding', color: '#34d399', glow: 'rgba(52,211,153,0.2)' },
                                     { value: '∞', label: 'Curiosity', color: '#f59e0b', glow: 'rgba(245,158,11,0.2)' },
                                 ].map((stat, i) => (
                                     <motion.div
@@ -217,16 +251,11 @@ const About = () => {
                                             backdropFilter: 'blur(16px)',
                                         }}
                                     >
-                                        {/* Hover radiant glow */}
                                         <div className="absolute inset-0 opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500" style={{
                                             background: `radial-gradient(120px circle at top right, ${stat.glow} 0%, transparent 100%)`
                                         }} />
-
-                                        {/* Animated borders on hover */}
                                         <div className="absolute top-0 left-0 w-full h-[2px] opacity-10 group-hover/stat:opacity-100 transition-all duration-500 origin-left scale-x-0 group-hover/stat:scale-x-100" style={{ background: `linear-gradient(90deg, transparent, ${stat.color}, ${stat.color})` }} />
                                         <div className="absolute left-0 top-0 h-full w-[2px] opacity-10 group-hover/stat:opacity-100 transition-all duration-500 origin-top scale-y-0 group-hover/stat:scale-y-100" style={{ background: `linear-gradient(180deg, transparent, ${stat.color}, transparent)` }} />
-
-
                                         <div className="relative z-10">
                                             <h3 className="text-4xl font-black mb-2 tracking-tight transition-all duration-300 group-hover/stat:translate-x-1" style={{ color: stat.color, textShadow: `0 2px 10px ${stat.glow}` }}>
                                                 {stat.value}
@@ -239,8 +268,206 @@ const About = () => {
                                 ))}
                             </div>
                         </div>
-
                     </div>
+
+                    {/* ═══════════════════════ PROFESSIONAL HIGHLIGHTS ═══════════════════════ */}
+                    <SectionLabel label="Professional Highlights" delay={0.1} />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+                        {[
+                            {
+                                icon: <Rocket size={22} />,
+                                color: '#14b8a6',
+                                glow: 'rgba(20,184,166,0.15)',
+                                title: 'What I Build',
+                                points: [
+                                    'Full-stack web apps with MERN stack',
+                                    'RESTful APIs with JWT & OAuth2 auth',
+                                    'Admin dashboards & data portals',
+                                    'Real-time features with WebSockets',
+                                    'Responsive, mobile-first UIs',
+                                ],
+                            },
+                            {
+                                icon: <Code2 size={22} />,
+                                color: '#8b5cf6',
+                                glow: 'rgba(139,92,246,0.15)',
+                                title: 'How I Work',
+                                points: [
+                                    'Clean, modular, commented code',
+                                    'Git branching & PR-based workflow',
+                                    'Agile / iterative development cycles',
+                                    'Test-driven where it matters most',
+                                    'Continuous learning & self-improvement',
+                                ],
+                            },
+                            {
+                                icon: <Star size={22} />,
+                                color: '#f59e0b',
+                                glow: 'rgba(245,158,11,0.15)',
+                                title: 'Career Goals',
+                                points: [
+                                    'Land a strong SDE-1 role post-graduation',
+                                    'Contribute to open-source projects',
+                                    'Master system design & DSA',
+                                    'Build SaaS products independently',
+                                    'Grow into a tech lead / architect',
+                                ],
+                            },
+                        ].map((card, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.12 }}
+                                whileHover={{ y: -6 }}
+                                className="p-6 rounded-2xl relative overflow-hidden group"
+                                style={{
+                                    background: 'linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(5,13,20,0.85) 100%)',
+                                    border: `1px solid rgba(255,255,255,0.06)`,
+                                    backdropFilter: 'blur(16px)',
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(200px circle at top left, ${card.glow}, transparent)` }} />
+                                <div className="relative z-10">
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <div className="p-2.5 rounded-xl" style={{ background: `${card.glow}`, color: card.color }}>{card.icon}</div>
+                                        <h3 className="text-white font-bold text-base">{card.title}</h3>
+                                    </div>
+                                    <ul className="space-y-2.5">
+                                        {card.points.map((pt, j) => (
+                                            <li key={j} className="flex items-start gap-2 text-slate-400 text-sm leading-snug">
+                                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: card.color }} />
+                                                {pt}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* ═══════════════════════ BEYOND THE CODE ═══════════════════════ */}
+                    <SectionLabel label="Beyond the Code" delay={0.1} />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+
+                        {/* Who I Am */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+                            className="p-7 rounded-2xl"
+                            style={{
+                                background: 'linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(5,13,20,0.85) 100%)',
+                                border: '1px solid rgba(255,255,255,0.06)',
+                                backdropFilter: 'blur(16px)',
+                            }}
+                        >
+                            <div className="flex items-center gap-3 mb-5">
+                                <Heart size={20} className="text-pink-400" />
+                                <h3 className="text-white font-bold text-base">Who I Am</h3>
+                            </div>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                                Beyond the terminal, I'm a curious thinker who enjoys zooming out from code to understand the bigger picture — why systems work the way they do, why products succeed or fail, and how technology shapes real lives.
+                            </p>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                                I'm a <strong className="text-slate-300">problem-first person</strong>. Before writing a single line of code, I try to deeply understand what I'm solving and for whom. That mindset keeps my work purposeful rather than mechanical.
+                            </p>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                I believe in building things that last — code that's readable six months from now, APIs that degrade gracefully, and UIs that don't need a tutorial. Quality over cleverness, always.
+                            </p>
+                        </motion.div>
+
+                        {/* Personality traits */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }}
+                            className="p-7 rounded-2xl"
+                            style={{
+                                background: 'linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(5,13,20,0.85) 100%)',
+                                border: '1px solid rgba(255,255,255,0.06)',
+                                backdropFilter: 'blur(16px)',
+                            }}
+                        >
+                            <div className="flex items-center gap-3 mb-5">
+                                <Lightbulb size={20} className="text-yellow-400" />
+                                <h3 className="text-white font-bold text-base">Personality & Traits</h3>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                {[
+                                    { emoji: '🎯', trait: 'Goal-oriented', desc: 'I set clear targets and reverse-engineer the path.' },
+                                    { emoji: '🤝', trait: 'Team player', desc: 'Better results come from better collaboration.' },
+                                    { emoji: '🔍', trait: 'Detail-driven', desc: 'Small things add up to big quality differences.' },
+                                    { emoji: '⚡', trait: 'Fast learner', desc: "New stack? Give me a weekend and I'm dangerous." },
+                                    { emoji: '💬', trait: 'Communicator', desc: 'I document clearly and speak up when stuck.' },
+                                    { emoji: '🧘', trait: 'Calm under pressure', desc: "Deadlines sharpen focus, they don't break it." },
+                                ].map((t, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.07 }}
+                                        className="p-3 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-teal-500/20 transition-colors"
+                                    >
+                                        <div className="text-lg mb-1">{t.emoji}</div>
+                                        <div className="text-white text-xs font-semibold mb-0.5">{t.trait}</div>
+                                        <div className="text-slate-500 text-[11px] leading-snug">{t.desc}</div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* ═══════════════════════ HOBBIES & INTERESTS ═══════════════════════ */}
+                    <SectionLabel label="Hobbies & Interests" delay={0.1} />
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-20">
+                        {[
+                            { icon: <Coffee size={24} />, label: 'Coffee & Code', detail: 'Best ideas arrive at 2 AM with a strong cup', color: '#f59e0b', glow: 'rgba(245,158,11,0.12)' },
+                            { icon: <Gamepad2 size={24} />, label: 'Gaming', detail: 'Strategy games & the occasional open-world adventure', color: '#a855f7', glow: 'rgba(168,85,247,0.12)' },
+                            { icon: <Music size={24} />, label: 'Music', detail: 'Lo-fi hip-hop while debugging, EDM while building', color: '#34d399', glow: 'rgba(52,211,153,0.12)' },
+                        ].map((h, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.1 }}
+                                whileHover={{ y: -8, scale: 1.03 }}
+                                className="p-5 rounded-2xl flex flex-col items-center text-center cursor-default group relative overflow-hidden"
+                                style={{
+                                    background: 'linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(5,13,20,0.85) 100%)',
+                                    border: '1px solid rgba(255,255,255,0.06)',
+                                    backdropFilter: 'blur(16px)',
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(120px circle at center, ${h.glow}, transparent)` }} />
+                                <div className="relative z-10">
+                                    <div className="mb-3 p-3 rounded-full" style={{ background: h.glow, color: h.color }}>{h.icon}</div>
+                                    <h4 className="text-white font-bold text-sm mb-1">{h.label}</h4>
+                                    <p className="text-slate-500 text-xs leading-snug">{h.detail}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* ═══════════════════════ FUN FACTS STRIP ═══════════════════════ */}
+                    <SectionLabel label="Fun Facts" delay={0.1} />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {[
+                            { emoji: '☕', fact: 'Powered by coffee', sub: 'At least 2 cups before serious coding begins' },
+                            { emoji: '🌙', fact: 'Night owl', sub: 'Most productive between 10 PM and 2 AM' },
+                            { emoji: '🐛', fact: 'Bug whisperer', sub: 'I actually enjoy debugging — it\'s like detective work' },
+                            { emoji: '📦', fact: 'npm addict', sub: 'If there\'s a package for it, I\'ve probably installed it' },
+                        ].map((f, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }}
+                                whileHover={{ scale: 1.04 }}
+                                className="flex items-start gap-4 p-5 rounded-2xl"
+                                style={{
+                                    background: 'linear-gradient(135deg, rgba(15,23,42,0.6) 0%, rgba(5,13,20,0.75) 100%)',
+                                    border: '1px solid rgba(255,255,255,0.05)',
+                                    backdropFilter: 'blur(12px)',
+                                }}
+                            >
+                                <span className="text-3xl">{f.emoji}</span>
+                                <div>
+                                    <div className="text-white font-semibold text-sm mb-0.5">{f.fact}</div>
+                                    <div className="text-slate-500 text-xs leading-snug">{f.sub}</div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
                 </motion.div>
             </div>
         </section>
